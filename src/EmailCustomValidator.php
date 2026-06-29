@@ -52,6 +52,11 @@ class EmailCustomValidator
             }
         }
 
+        // If no whitelist rules are configured, there is nothing to enforce.
+        if (count($whiteListLiteralRules) === 0 && count($whiteListRegexRules) === 0) {
+            return;
+        }
+
         if (count($whiteListLiteralRules) && count($whiteListRegexRules) === 0) {
             return;
         }
