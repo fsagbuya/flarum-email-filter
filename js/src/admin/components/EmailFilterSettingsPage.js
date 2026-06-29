@@ -4,14 +4,8 @@ import ExtensionPage from 'flarum/admin/components/ExtensionPage';
 import Button from 'flarum/common/components/Button';
 import Switch from 'flarum/common/components/Switch';
 
-import {settings} from '@fof-components';
-
 import {Storage} from './storage';
 import {getStorageKeys} from '../utils';
-
-const {
-  items: {StringItem},
-} = settings;
 
 export default class EmailFilterSettingsPage extends ExtensionPage {
   oninit(vnode) {
@@ -28,22 +22,16 @@ export default class EmailFilterSettingsPage extends ExtensionPage {
         <div className="EmailFilterSettingsPage">
           <div className="SettingsSection GeneralPreferences">
             <h3>{app.translator.trans('nyu8-email-filter.admin.general')}</h3>
-            <div className="Form-group">
-              <StringItem
-                name="nyu8-email-filter.custom_failure_message"
-                setting={this.setting}
-                style="max-width: 500px"
-              >
-                {app.translator.trans(
-                  'nyu8-email-filter.admin.custom_failure_message_label',
-                )}
-                <div class="hint">
-                  {app.translator.trans(
-                    'nyu8-email-filter.admin.custom_failure_message_hint',
-                  )}
-                </div>
-              </StringItem>
-            </div>
+            {this.buildSettingComponent({
+              type: 'text',
+              setting: 'nyu8-email-filter.custom_failure_message',
+              label: app.translator.trans(
+                'nyu8-email-filter.admin.custom_failure_message_label',
+              ),
+              help: app.translator.trans(
+                'nyu8-email-filter.admin.custom_failure_message_hint',
+              ),
+            })}
             {this.submitButton()}
           </div>
           <div className="SettingsSection RuleSettings">

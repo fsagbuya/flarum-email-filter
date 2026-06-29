@@ -66,13 +66,13 @@ class EmailCustomValidator
     private function raiseBlacklistException()
     {
         $message = $this->settings->get('nyu8-email-filter.custom_failure_message', $this->translator->trans('nyu8-email-filter.forum.blacklist_exception'));
-        throw new ValidationException([$message]);
+        throw new ValidationException(['email' => $message]);
     }
 
     private function raiseWhitelistException()
     {
         $message = $this->settings->get('nyu8-email-filter.custom_failure_message', $this->translator->trans('nyu8-email-filter.forum.whitelist_exception'));
-        throw new ValidationException([$message]);
+        throw new ValidationException(['email' => $message]);
     }
 
     /**

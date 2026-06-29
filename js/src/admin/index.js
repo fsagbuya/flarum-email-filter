@@ -5,7 +5,7 @@ import Rule from '../common/models/rule';
 app.initializers.add('nyu8-email-filter', () => {
   app.store.models.email_rules = Rule;
 
-  app.extensionData
+  app.registry
     .for('nyu8-email-filter')
     .registerPage(EmailFilterSettingsPage);
 });
